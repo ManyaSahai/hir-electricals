@@ -1139,6 +1139,7 @@ ul {
 
 .main-menu .main-menu__list > li > a,
 .stricky-header .main-menu__list > li > a {
+  margin-bottom: 29px;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
