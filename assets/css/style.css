@@ -19,7 +19,7 @@
 --------------------------------------------------------------*/
 :root {
   --erepair-font: "Archivo", sans-serif;
-  --erepair-font-2: "Titillium Web", sans-serif;
+  --erepair-font-2: sans-serif;
   --erepair-font-3: "Pacifico", cursive;
   --erepair-gray: #6e777d;
   --erepair-gray-rgb: 110, 119, 125;
@@ -513,7 +513,7 @@ ul {
   width: 30px;
   height: 4px;
   background-color: var(--erepair-base);
-  position: relative;
+
   overflow: hidden;
 }
 
