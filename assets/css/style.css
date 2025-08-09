@@ -111,7 +111,7 @@ h4,
 h5,
 h6 {
   font-family: var(--erepair-font-2);
-  color: var(--erepair-black);
+  color: #ffd700;
   margin: 0;
 }
 
