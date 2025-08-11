@@ -2147,11 +2147,13 @@
             text-align: center;
             position: relative;
             min-height: 400px;
-            animation: fadeIn 0.6s ease-in-out;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
         }
 
         .hir-testimonial-slide.active {
             display: block;
+            opacity: 1;
         }
 
         .hir-quote-icon {
@@ -2242,18 +2244,6 @@
         .hir-dot.active {
             background: #f4d03f;
             transform: scale(1.2);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         @media (max-width: 768px) {
@@ -2375,17 +2365,17 @@
                 </div>
 
                 <div class="hir-slider-controls">
-                    <button class="hir-prev-btn" onclick="previousSlide()">
+                    <button class="hir-prev-btn" onclick="goToPrevious()">
                         <i class="fas fa-chevron-left"></i>
                     </button>
 
                     <div class="hir-slider-dots">
-                        <span class="hir-dot active" onclick="currentSlide(1)"></span>
-                        <span class="hir-dot" onclick="currentSlide(2)"></span>
-                        <span class="hir-dot" onclick="currentSlide(3)"></span>
+                        <span class="hir-dot active" onclick="goToSlide(0)"></span>
+                        <span class="hir-dot" onclick="goToSlide(1)"></span>
+                        <span class="hir-dot" onclick="goToSlide(2)"></span>
                     </div>
 
-                    <button class="hir-next-btn" onclick="nextSlide()">
+                    <button class="hir-next-btn" onclick="goToNext()">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
@@ -2398,73 +2388,111 @@
         const slides = document.querySelectorAll('.hir-testimonial-slide');
         const dots = document.querySelectorAll('.hir-dot');
         const totalSlides = slides.length;
+        let autoSlideInterval;
 
+        // Function to show a specific slide
         function showSlide(index) {
-            // Hide all slides
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+            // Ensure index is within bounds
+            if (index >= totalSlides) {
+                currentSlideIndex = 0;
+            } else if (index < 0) {
+                currentSlideIndex = totalSlides - 1;
+            } else {
+                currentSlideIndex = index;
+            }
 
-            // Show current slide
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
+            // Hide all slides and remove active class from dots
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+
+            // Show current slide and activate corresponding dot
+            slides[currentSlideIndex].classList.add('active');
+            dots[currentSlideIndex].classList.add('active');
         }
 
-        function nextSlide() {
-            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
-            showSlide(currentSlideIndex);
+        // Global functions for onclick events
+        function goToNext() {
+            stopAutoSlide();
+            showSlide(currentSlideIndex + 1);
+            startAutoSlide();
         }
 
-        function previousSlide() {
-            currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
-            showSlide(currentSlideIndex);
+        function goToPrevious() {
+            stopAutoSlide();
+            showSlide(currentSlideIndex - 1);
+            startAutoSlide();
         }
 
-        function currentSlide(index) {
-            currentSlideIndex = index - 1;
-            showSlide(currentSlideIndex);
+        function goToSlide(index) {
+            stopAutoSlide();
+            showSlide(index);
+            startAutoSlide();
         }
 
-        // Auto-slide every 8 seconds
-        setInterval(nextSlide, 8000);
+        // Start auto-slide functionality
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(function () {
+                showSlide(currentSlideIndex + 1);
+            }, 5000);
+        }
 
-        // Touch/swipe support for mobile
-        let startX = 0;
-        let startY = 0;
-        const slider = document.querySelector('.hir-testimonial-slider');
+        // Stop auto-slide functionality
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
 
-        slider.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            startY = e.touches[0].clientY;
-        });
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            // Touch/swipe support for mobile
+            let startX = 0;
+            let startY = 0;
+            const slider = document.querySelector('.hir-testimonial-slider');
 
-        slider.addEventListener('touchend', (e) => {
-            if (!startX || !startY) return;
+            slider.addEventListener('touchstart', function (e) {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                stopAutoSlide();
+            });
 
-            let endX = e.changedTouches[0].clientX;
-            let endY = e.changedTouches[0].clientY;
+            slider.addEventListener('touchend', function (e) {
+                if (!startX || !startY) return;
 
-            let diffX = startX - endX;
-            let diffY = startY - endY;
+                let endX = e.changedTouches[0].clientX;
+                let endY = e.changedTouches[0].clientY;
 
-            if (Math.abs(diffX) > Math.abs(diffY)) {
-                if (diffX > 50) {
-                    nextSlide();
-                } else if (diffX < -50) {
-                    previousSlide();
+                let diffX = startX - endX;
+                let diffY = startY - endY;
+
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                    if (diffX > 0) {
+                        goToNext();
+                    } else {
+                        goToPrevious();
+                    }
                 }
-            }
 
-            startX = 0;
-            startY = 0;
-        });
+                startX = 0;
+                startY = 0;
+            });
 
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                previousSlide();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-            }
+            // Keyboard navigation
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'ArrowLeft') {
+                    goToPrevious();
+                } else if (e.key === 'ArrowRight') {
+                    goToNext();
+                }
+            });
+
+            // Pause auto-slide when user hovers over the slider
+            slider.addEventListener('mouseenter', stopAutoSlide);
+            slider.addEventListener('mouseleave', startAutoSlide);
+
+            // Initialize the slider
+            showSlide(0);
+            startAutoSlide();
         });
     </script>
 </body>
