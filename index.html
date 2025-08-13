@@ -251,6 +251,7 @@
                 }
 
                 .main-slider__bg {
+
                     position: absolute;
                     top: -70px;
                     left: 0;
@@ -825,7 +826,7 @@
                         top: 0;
                         background-size: contain;
                         background-position: center center;
-                        height: 100%;
+                        height: 70%;
                     }
 
                     .main-slider__title {
@@ -846,6 +847,7 @@
 
                     .custom-about-img img {
                         max-width: 250px;
+                        margin-left: 64px;
                     }
                 }
 
@@ -959,6 +961,45 @@
             </header>
 
             <!-- Main Slider -->
+            <style>
+                /* Default styles for all screens */
+                .main-slider {
+                    height: 500px;
+                    /* or whatever your current height is */
+                    position: relative;
+                }
+
+                .main-slider__bg {
+                    height: 70% background-size: contain;
+                    background-position: center;
+                }
+
+                /* Styles for small mobile devices (typically 480px and below) */
+                @media only screen and (max-width: 480px) {
+                    .main-slider {
+                        height: 300px;
+                        /* reduced height for mobile */
+                    }
+                }
+
+                /* Keep your existing navigation styles */
+                .slider-nav {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    cursor: pointer;
+                    z-index: 10;
+                }
+
+                .prev {
+                    left: 20px;
+                }
+
+                .next {
+                    right: 20px;
+                }
+            </style>
+
             <section class="main-slider">
                 <div class="main-slider__carousel owl-carousel owl-theme">
                     <div class="item">
@@ -2714,6 +2755,11 @@
             border-right: none;
         }
 
+        /* Hide empty cells by default - they'll be shown on larger screens */
+        .logo-display-cell:empty {
+            display: none;
+        }
+
         .brand-logo-image {
             width: 170px;
             /* fixed width */
@@ -2724,7 +2770,6 @@
             display: block;
             margin: 0 auto;
         }
-
 
         .top-category-row {
             display: grid;
@@ -2765,12 +2810,26 @@
             width: 100%;
         }
 
+        /* Hide empty cells in four-column sections too */
+        .logo-display-cell-four:empty {
+            display: none;
+        }
+
         .red-diagonal-footer {
             background: linear-gradient(135deg, #c41e3a 0%, #8b1538 100%);
             height: 15vh;
             position: relative;
             clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
             width: 100%;
+        }
+
+        /* Desktop and larger screens - show empty cells for proper layout */
+        @media (min-width: 769px) {
+
+            .logo-display-cell:empty,
+            .logo-display-cell-four:empty {
+                display: flex;
+            }
         }
 
         /* Mobile Responsiveness */
@@ -3141,46 +3200,10 @@
 </div><!-- /.page-wrapper -->
 
 
-<div class="mobile-nav__wrapper">
-    <div class="mobile-nav__overlay mobile-nav__toggler"></div>
-    <!-- /.mobile-nav__overlay -->
-    <div class="mobile-nav__content">
-        <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
-
-        <div class="logo-box">
-            <a href="index.html" aria-label="logo image">
-                <img src="assets/images/resources/logo-2.png" width="140" alt="" />
-            </a>
-        </div>
-        <!-- /.logo-box -->
-        <div class="mobile-nav__container"></div>
-        <!-- /.mobile-nav__container -->
-
-        <ul class="mobile-nav__contact list-unstyled">
-            <li>
-                <i class="fa fa-envelope"></i>
-                <a href="mailto:needhelp@packageName__.com">needhelp@erepair.com</a>
-            </li>
-            <li>
-                <i class="fas fa-phone"></i>
-                <a href="tel:666-888-0000">666 888 0000</a>
-            </li>
-        </ul><!-- /.mobile-nav__contact -->
-        <div class="mobile-nav__top">
-            <div class="mobile-nav__social">
-                <a href="#" class="fab fa-twitter"></a>
-                <a href="#" class="fab fa-facebook-square"></a>
-                <a href="#" class="fab fa-pinterest-p"></a>
-                <a href="#" class="fab fa-instagram"></a>
-            </div><!-- /.mobile-nav__social -->
-        </div><!-- /.mobile-nav__top -->
 
 
 
-    </div>
-    <!-- /.mobile-nav__content -->
-</div>
-<!-- /.mobile-nav__wrapper -->
+
 
 <div class="search-popup">
     <div class="search-popup__overlay search-toggler"></div>
