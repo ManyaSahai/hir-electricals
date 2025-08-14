@@ -989,13 +989,28 @@
                     }
                 }
 
-                /* Navigation styles with unique names */
+                /* Navigation arrows styles */
                 .custom-slider-nav {
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
                     cursor: pointer;
                     z-index: 10;
+                    background: rgba(0, 0, 0, 0.5);
+                    color: white;
+                    border: none;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 18px;
+                    transition: background 0.3s ease;
+                }
+
+                .custom-slider-nav:hover {
+                    background: rgba(0, 0, 0, 0.7);
                 }
 
                 .custom-nav-prev {
@@ -1004,6 +1019,23 @@
 
                 .custom-nav-next {
                     right: 20px;
+                }
+
+                /* Mobile arrow adjustments */
+                @media only screen and (max-width: 480px) {
+                    .custom-slider-nav {
+                        width: 30px;
+                        height: 30px;
+                        font-size: 14px;
+                    }
+
+                    .custom-nav-prev {
+                        left: 10px;
+                    }
+
+                    .custom-nav-next {
+                        right: 10px;
+                    }
                 }
             </style>
 
@@ -1042,7 +1074,22 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Navigation Arrows -->
+                <button class="custom-slider-nav custom-nav-prev" onclick="prevSlide()">&#8249;</button>
+                <button class="custom-slider-nav custom-nav-next" onclick="nextSlide()">&#8250;</button>
             </section>
+
+            <script>
+                // Add these functions to control your owl carousel
+                function prevSlide() {
+                    $('.main-slider__carousel').trigger('prev.owl.carousel');
+                }
+
+                function nextSlide() {
+                    $('.main-slider__carousel').trigger('next.owl.carousel');
+                }
+            </script>
             <!-- Custom Navigation Arrows -->
             <div class="slider-nav prev" id="prevBtn">
                 <i class="fas fa-chevron-left"></i>
