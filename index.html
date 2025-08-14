@@ -528,12 +528,12 @@
                     padding-bottom: 15px;
                 }
 
-                .section-title__title::after {
+                .section-title__title::before {
                     content: '';
                     position: absolute;
                     bottom: 0;
-                    left: 0;
-                    width: 80px;
+                    left: 30;
+                    width: 100px;
                     height: 3px;
                     background-color: #b22222;
                 }
@@ -961,6 +961,7 @@
             </header>
 
             <!-- Mobile Optimized Slider -->
+            <!-- Mobile Optimized Slider -->
             <style>
                 /* Default styles for all screens */
                 .custom-banner-slider {
@@ -989,28 +990,13 @@
                     }
                 }
 
-                /* Navigation arrows styles */
+                /* Navigation styles with unique names */
                 .custom-slider-nav {
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
                     cursor: pointer;
                     z-index: 10;
-                    background: rgba(0, 0, 0, 0.5);
-                    color: white;
-                    border: none;
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 18px;
-                    transition: background 0.3s ease;
-                }
-
-                .custom-slider-nav:hover {
-                    background: rgba(0, 0, 0, 0.7);
                 }
 
                 .custom-nav-prev {
@@ -1019,23 +1005,6 @@
 
                 .custom-nav-next {
                     right: 20px;
-                }
-
-                /* Mobile arrow adjustments */
-                @media only screen and (max-width: 480px) {
-                    .custom-slider-nav {
-                        width: 30px;
-                        height: 30px;
-                        font-size: 14px;
-                    }
-
-                    .custom-nav-prev {
-                        left: 10px;
-                    }
-
-                    .custom-nav-next {
-                        right: 10px;
-                    }
                 }
             </style>
 
@@ -1074,10 +1043,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Navigation Arrows -->
-                <button class="custom-slider-nav custom-nav-prev" onclick="prevSlide()">&#8249;</button>
-                <button class="custom-slider-nav custom-nav-next" onclick="nextSlide()">&#8250;</button>
             </section>
 
             <script>
@@ -1091,12 +1056,7 @@
                 }
             </script>
             <!-- Custom Navigation Arrows -->
-            <div class="slider-nav prev" id="prevBtn">
-                <i class="fas fa-chevron-left"></i>
-            </div>
-            <div class="slider-nav next" id="nextBtn">
-                <i class="fas fa-chevron-right"></i>
-            </div>
+
             </section>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -1196,70 +1156,267 @@
         </html>
 
         <!--About One Start -->
-        <section id="about" class="about-one">
-            <div class="about-one__shape-one float-bob-y">
-                <img src="assets/images/shapes/about-one-shape-1.png" alt="">
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="about-one__left wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="custom-about-img-wrapper">
-                                        <div class="custom-about-img">
-                                            <img src="cable.png" alt="Cable" style="width: 500px; height: auto; ;">
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>About Section - Mobile Responsive</title>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+            <style>
+                .about-one {
+                    position: relative;
+                    padding: 60px 0;
+                    background-color: #f8f9fa;
+                }
+
+                .about-one__shape-one {
+                    position: absolute;
+                    top: 50px;
+                    right: 50px;
+                    z-index: -1;
+                    opacity: 0.3;
+                }
+
+                .float-bob-y {
+                    animation: float 3s ease-in-out infinite;
+                }
+
+                @keyframes float {
+
+                    0%,
+                    100% {
+                        transform: translateY(0px);
+                    }
+
+                    50% {
+                        transform: translateY(-10px);
+                    }
+                }
+
+                .custom-about-img-wrapper {
+                    margin-bottom: 20px;
+                }
+
+                .custom-about-img img {
+                    width: 100%;
+                    max-width: 500px;
+                    height: auto;
+                    border-radius: 10px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                }
+
+                .section-title__title {
+                    font-size: 2.5rem;
+                    font-weight: bold;
+                    color: #333;
+                    margin-bottom: 20px;
+                }
+
+                .about-one__text-1 {
+                    font-size: 1rem;
+                    line-height: 1.7;
+                    color: #666;
+                    text-align: justify;
+                }
+
+                /* Mobile specific styles */
+                @media (max-width: 767.98px) {
+                    .about-one {
+                        padding: 40px 0;
+                    }
+
+                    .about-one__shape-one {
+                        display: none;
+                        /* Hide decorative shape on mobile to avoid overlap */
+                    }
+
+                    .section-title__title {
+                        font-size: 2rem;
+                        text-align: center;
+                        margin-bottom: 15px;
+                    }
+
+                    .custom-about-img img {
+                        max-width: 100%;
+                        margin-bottom: 20px;
+                        display: block;
+                        /* ensures margins work */
+                        margin-left: auto;
+                        /* center horizontally */
+                        margin-right: 120px
+                            /* center horizontally */
+                    }
+
+
+
+                    .about-one__text-1 {
+                        font-size: 0.95rem;
+                        text-align: left;
+                        padding: 0 10px;
+                    }
+
+                    /* Force side-by-side layout on mobile */
+                    .mobile-flex {
+                        display: flex;
+                        gap: 15px;
+                        align-items: flex-start;
+                    }
+
+                    .mobile-img {
+                        flex: 0 0 40%;
+                        max-width: 40%;
+                    }
+
+                    .mobile-text {
+                        flex: 1;
+                        padding-left: 10px;
+                    }
+                }
+
+                /* Very small screens */
+                @media (max-width: 480px) {
+                    .mobile-flex {
+                        flex-direction: column;
+                    }
+
+                    .mobile-img {
+                        flex: none;
+                        max-width: 100%;
+                        margin-bottom: 15px;
+                    }
+
+                    .mobile-text {
+                        padding-left: 0;
+                    }
+                }
+
+                /* Animation classes */
+                .slideInLeft {
+                    animation: slideInLeft 1s ease-out;
+                }
+
+                .fadeInRight {
+                    animation: fadeInRight 1s ease-out;
+                }
+
+                @keyframes slideInLeft {
+                    from {
+                        transform: translateX(-100%);
+                        opacity: 0;
+                    }
+
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes fadeInRight {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            </style>
+        </head>
+
+        <body>
+            <section id="about" class="about-one">
+                <div class="about-one__shape-one float-bob-y">
+                    <img src="assets/images/shapes/about-one-shape-1.png" alt="">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <!-- Desktop Layout -->
+                        <div class="col-xl-6 d-none d-md-block">
+                            <div class="about-one__left slideInLeft">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="custom-about-img-wrapper">
+                                            <div class="custom-about-img">
+                                                <img src="cable.png" alt="Cable" style="width: 500px; height: auto;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="about-one__img-box-2">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-6">
-                                    <div class="about-one__img-box-2">
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <div class="about-one__right wow fadeInRight" data-wow-delay="300ms">
-                            <div class="section-title text-left">
 
-                                <div class="section-title__title-box sec-title-animation animation-style2">
-                                    <h2 class="section-title__title title-animation ">ABOUT US
-                                    </h2>
+                        <div class="col-xl-6 d-none d-md-block">
+                            <div class="about-one__right fadeInRight">
+                                <div class="section-title text-left">
+                                    <div class="section-title__title-box sec-title-animation animation-style2">
+                                        <h2 class="section-title__title title-animation">ABOUT US</h2>
+                                    </div>
+                                </div>
+                                <p class="about-one__text-1">
+                                    We are one of the leading suppliers of wholesale heavy power supply products,
+                                    meeting the needs of end customers. Over the years, we have built a vast clientele
+                                    list, which includes MEP contractors, commercial architects, and electrical
+                                    contractors, enabling us to keep growing and delivering quality products. At HIR
+                                    Electricals, we believe that our company's success is measured by its ability to
+                                    provide clients with every possible solution for their electrical essentials.
+                                    <br><br>
+                                    As an authorized distributor of Philips products, we take pride in offering ready
+                                    stock of lighting solutions to meet immediate requirements. To deliver the finest
+                                    electrical products to our clients, we have strong partnerships with top brands that
+                                    use premium-quality materials as per industry standards for safe electrical supply.
+                                    <br><br>
+                                    Whether you need a heavy power supply panel for your factory or top-quality wiring
+                                    for your office, we ensure you get the best and tested products. We have established
+                                    ourselves in the market by providing the highest calibre products and achieving
+                                    significant client satisfaction through equitable business practices and superior
+                                    offerings.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Layout -->
+                        <div class="col-12 d-block d-md-none">
+                            <div class="section-title text-left mb-3">
+                                <h2 class="section-title__title">ABOUT US</h2>
+                            </div>
+
+                            <div class="mobile-flex">
+                                <div class="mobile-img">
+                                    <div class="custom-about-img">
+                                        <img src="cable.png" alt="Cable">
+                                    </div>
+                                </div>
+
+                                <div class="mobile-text">
+                                    <p class="about-one__text-1">
+                                        We are one of the leading suppliers of wholesale heavy power supply products,
+                                        meeting the needs of end customers. Over the years, we have built a vast
+                                        clientele list, which includes MEP contractors, commercial architects, and
+                                        electrical contractors.
+                                        <br><br>
+                                        As an authorized distributor of Philips products, we take pride in offering
+                                        ready stock of lighting solutions. We ensure you get the best and tested
+                                        products with superior offerings.
+                                    </p>
                                 </div>
                             </div>
-                            <p class="about-one__text-1" style="text-align: justify;">
-                                We are one of the leading suppliers of wholesale heavy power supply products,
-                                meeting the
-                                needs of end customers. Over the years, we have built a vast clientele list,
-                                which includes MEP contractors, commercial architects, and electrical
-                                contractors,
-                                enabling us to keep growing and delivering quality products. At HIR Electricals,
-                                we believe that our company's success is measured by its ability to provide
-                                clients
-                                with every possible solution for their electrical essentials.
-
-                                As an authorized distributor of Philips products, we take pride in offering
-                                ready
-                                stock of lighting solutions to meet immediate requirements. To deliver the
-                                finest
-                                electrical products to our clients, we have strong partnerships with top brands
-                                that use premium-quality materials as per industry standards for safe electrical
-                                supply.
-
-                                Whether you need a heavy power supply panel for your factory or top-quality
-                                wiring
-                                for your office, we ensure you get the best and tested products. We have
-                                established
-                                ourselves in the market by providing the highest calibre products and achieving
-                                significant client satisfaction through equitable business practices and
-                                superior offerings.
-                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        </body>
+
+        </html>
 
         <!-- Scripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
