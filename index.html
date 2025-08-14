@@ -826,7 +826,7 @@
                         top: 0;
                         background-size: contain;
                         background-position: center center;
-                        height: 70%;
+
                     }
 
                     .main-slider__title {
@@ -954,36 +954,43 @@
                             <li><a href="#about" onclick="closeMobileMenu()">About Us</a></li>
                             <li><a href="#services" onclick="closeMobileMenu()">Services</a></li>
                             <li><a href="#brands" onclick="closeMobileMenu()">Brands</a></li>
-                            <li><a href="#contact onclick=" closeMobileMenu()">Contact Us</a></li>
+                            <li><a href="#contact" onclick="closeMobileMenu()">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
             </header>
 
-            <!-- Main Slider -->
+            <!-- Mobile Optimized Slider -->
             <style>
                 /* Default styles for all screens */
-                .main-slider {
+                .custom-banner-slider {
                     height: 500px;
-                    /* or whatever your current height is */
                     position: relative;
                 }
 
-                .main-slider__bg {
-                    height: 70% background-size: contain;
-                    background-position: center;
+                .custom-banner-bg {
+                    height: 70%;
+                    background-position: top;
+                }
+
+                .custom-banner-content {
+                    /* Add your content styles here if needed */
+                }
+
+                .custom-banner-btn-box {
+                    /* Add your button box styles here if needed */
                 }
 
                 /* Styles for small mobile devices (typically 480px and below) */
                 @media only screen and (max-width: 480px) {
-                    .main-slider {
-                        height: 300px;
-                        /* reduced height for mobile */
+                    .custom-banner-slider {
+                        height: 120px !important;
+                        /* forced override with !important to eliminate white space */
                     }
                 }
 
-                /* Keep your existing navigation styles */
-                .slider-nav {
+                /* Navigation styles with unique names */
+                .custom-slider-nav {
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
@@ -991,49 +998,58 @@
                     z-index: 10;
                 }
 
-                .prev {
+                .custom-nav-prev {
                     left: 20px;
                 }
 
-                .next {
+                .custom-nav-next {
                     right: 20px;
                 }
             </style>
 
-            <section class="main-slider">
+            <section class="custom-banner-slider">
                 <div class="main-slider__carousel owl-carousel owl-theme">
                     <div class="item">
-                        <div class="main-slider__bg" style="background-image: url('58.jpg');"></div>
-                        <div class="main-slider__content">
-                            <div class="main-slider__btn-box">
+                        <div class="custom-banner-bg">
+                            <img src="58.jpg" alt="Banner Image">
+                        </div>
+
+                        <div class="custom-banner-content">
+                            <div class="custom-banner-btn-box">
                             </div>
                         </div>
                     </div>
 
                     <div class="item">
-                        <div class="main-slider__bg" style="background-image: url('59.jpg');"></div>
-                        <div class="main-slider__content">
-                            <div class="main-slider__btn-box">
+                        <div class="custom-banner-bg">
+                            <img src="59.jpg" alt="Banner Image">
+                        </div>
+
+                        <div class="custom-banner-content">
+                            <div class="custom-banner-btn-box">
                             </div>
                         </div>
                     </div>
 
                     <div class="item">
-                        <div class="main-slider__bg" style="background-image: url('60.jpg');"></div>
-                        <div class="main-slider__content">
-                            <div class="main-slider__btn-box">
+                        <div class="custom-banner-bg">
+                            <img src="60.jpg" alt="Banner Image">
+                        </div>
+
+                        <div class="custom-banner-content">
+                            <div class="custom-banner-btn-box">
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Custom Navigation Arrows -->
-                <div class="slider-nav prev" id="prevBtn">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <div class="slider-nav next" id="nextBtn">
-                    <i class="fas fa-chevron-right"></i>
-                </div>
+            </section>
+            <!-- Custom Navigation Arrows -->
+            <div class="slider-nav prev" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="slider-nav next" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </div>
             </section>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
